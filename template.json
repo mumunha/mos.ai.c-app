@@ -1,0 +1,82 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "name": "MOS•AI•C - AI Knowledge Management",
+  "description": "AI-powered knowledge management system with semantic search, task extraction, and knowledge graphs",
+  "icon": "https://raw.githubusercontent.com/[username]/mos.ai.c-app/main/public/img/MOS.AI.C_ICON.png",
+  "source": {
+    "type": "repo",
+    "repo": "[username]/mos.ai.c-app"
+  },
+  "services": [
+    {
+      "name": "postgres",
+      "type": "database",
+      "databaseType": "postgresql",
+      "environmentVariables": {
+        "POSTGRES_DB": "railway",
+        "POSTGRES_USER": "postgres"
+      },
+      "plugins": [
+        {
+          "type": "postgresql",
+          "config": {
+            "extensions": ["vector", "pg_trgm", "uuid-ossp", "pgcrypto"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "web",
+      "type": "web",
+      "buildCommand": "npm install && npm run build",
+      "startCommand": "npm start",
+      "environmentVariables": {
+        "NODE_ENV": "production",
+        "BCRYPT_ROUNDS": "10"
+      },
+      "requiredEnvironmentVariables": [
+        "OPENAI_API_KEY",
+        "JWT_SECRET",
+        "NEXT_PUBLIC_APP_URL",
+        "ADMIN_EMAIL"
+      ],
+      "optionalEnvironmentVariables": [
+        "TELEGRAM_BOT_TOKEN",
+        "TELEGRAM_WEBHOOK_SECRET"
+      ],
+      "dependencies": ["postgres"]
+    }
+  ],
+  "environmentVariables": {
+    "DATABASE_URL": {
+      "description": "PostgreSQL connection string (auto-generated)",
+      "generator": "database_url",
+      "service": "postgres"
+    },
+    "OPENAI_API_KEY": {
+      "description": "Your OpenAI API key for AI processing",
+      "required": true
+    },
+    "JWT_SECRET": {
+      "description": "Secret key for JWT token signing",
+      "generator": "secret"
+    },
+    "NEXT_PUBLIC_APP_URL": {
+      "description": "Public URL of your deployed app",
+      "generator": "public_url",
+      "service": "web"
+    },
+    "ADMIN_EMAIL": {
+      "description": "Email address for admin panel access",
+      "required": true
+    },
+    "TELEGRAM_BOT_TOKEN": {
+      "description": "Telegram bot token (optional)",
+      "required": false
+    },
+    "TELEGRAM_WEBHOOK_SECRET": {
+      "description": "Telegram webhook secret (optional)",
+      "required": false
+    }
+  }
+}
