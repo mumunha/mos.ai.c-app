@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run setup:db",
-    "start": "npm run setup:db && next start",
+    "build": "next build",
+    "start": "next start",
+    "railway:setup": "npm run setup:db",
     "lint": "next lint",
     "setup:db": "node scripts/setup-database.js",
     "setup:minio": "node scripts/setup-minio.js",

@@ -30,6 +30,7 @@
       "type": "web",
       "buildCommand": "npm install && npm run build",
       "startCommand": "npm start",
+      "postDeployCommand": "npm run railway:setup",
       "environmentVariables": {
         "NODE_ENV": "production",
         "BCRYPT_ROUNDS": "10"
