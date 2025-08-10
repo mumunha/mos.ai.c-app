@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateUser, generateToken, setAuthCookie } from '@/lib/auth';
+import { ensureDatabaseInitialized } from '@/lib/auto-init';
 
 export async function POST(request: NextRequest) {
   try {
+    // Ensure database is initialized before any operations
+    await ensureDatabaseInitialized();
     const { email, password } = await request.json();
 
     if (!email || !password) {

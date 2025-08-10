@@ -26,5 +26,7 @@ test-*.js
 test-*.ts
 export-csv.js
 
+# Development files
+deploy-setup.md
 CLAUDE.md
 
