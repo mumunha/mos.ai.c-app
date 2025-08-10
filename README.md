@@ -137,12 +137,22 @@ Core tables:
 
 ## Deployment
 
-The application is designed for Railway deployment:
+### Railway Template (One-Click Deploy)
 
-1. Create a Railway project with PostgreSQL service
-2. Set environment variables in Railway dashboard
-3. Deploy from GitHub repository
-4. Run database initialization via admin panel
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/your-template-id)
+
+### Manual Railway Deployment
+
+1. Create Railway project with PostgreSQL service
+2. Connect your GitHub repository
+3. Set required environment variables
+4. Deploy the application
+5. **Important**: Run database initialization after deployment:
+   ```bash
+   railway run npm run setup:db
+   ```
+
+See [deploy-setup.md](deploy-setup.md) for detailed deployment instructions.
 
 ## Contributing
 
