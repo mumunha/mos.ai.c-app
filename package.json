@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npm run setup:db && next start",
+    "start": "next start",
     "railway:setup": "npm run setup:db",
     "lint": "next lint",
     "setup:db": "node scripts/setup-database.js",
