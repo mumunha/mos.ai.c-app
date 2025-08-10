@@ -78,16 +78,15 @@ async function initializeDatabase() {
         const migrationPath = join(process.cwd(), 'database', 'migrations', migration.file);
         const migrationSQL = await readFile(migrationPath, 'utf8');
         
-        // Split by semicolon and execute each statement
-        const statements = migrationSQL
-          .split(';')
-          .map(stmt => stmt.trim())
-          .filter(stmt => stmt.length > 0 && !stmt.startsWith('--'));
+        // Execute the entire migration file at once
+        // Remove comments but preserve the SQL structure
+        const cleanSQL = migrationSQL
+          .split('\n')
+          .filter(line => !line.trim().startsWith('--') && line.trim().length > 0)
+          .join('\n');
         
-        for (const statement of statements) {
-          if (statement.trim()) {
-            await query(statement);
-          }
+        if (cleanSQL.trim()) {
+          await query(cleanSQL);
         }
         
         console.log(`✓ ${migration.file} completed`);
