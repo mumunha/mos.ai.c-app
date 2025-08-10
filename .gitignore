@@ -1,0 +1,30 @@
+node_modules
+.next
+.npm-cache/
+
+# Environment files
+.env.local
+.env*.local
+
+# CSV exports (may contain sensitive data)
+csv/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Development documentation
+prd.md
+interface.md
+plan*.md
+railway-deploy.md
+*DEPLOYMENT*.md
+*IMPLEMENTATION_PLAN*.md
+
+# Test files and development scripts
+test-*.js
+test-*.ts
+export-csv.js
+
+CLAUDE.md
+
